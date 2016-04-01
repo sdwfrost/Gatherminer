@@ -120,13 +120,13 @@ document.addEventListener('scroll', function(evt)
 {
 	//document.body.scrollTop
 	//console.log(document.body.scrollTop - $(canvas).offset().top);
-	if(document.body.scrollTop > $(canvas).offset().top-80)
+	if(document.body.scrollTop > $(canvas).offset().top-40)
 	{	// main canvas about to touch top of window
 		document.getElementById('tools').style.position = 'fixed';
 		document.getElementById('tools').style.top = '0.5em';
 
 		document.getElementById('minimapContainer').style.position = 'relative';
-		document.getElementById('minimapContainer').style.top = (document.body.scrollTop-20)+'px';
+		document.getElementById('minimapContainer').style.top = (document.body.scrollTop-80)+'px';
 	}
 	else
 	{
@@ -143,6 +143,7 @@ document.addEventListener('scroll', function(evt)
 	var bottomVisiblePixel = Math.min(topmostVisiblePixel+window.innerHeight,canvas.height);
 	if(topmostVisiblePixel<0) topmostVisiblePixel = 0;
 
+  // draw minimap scroll thumb
 	minimapContext.clearRect(0,0,minimap.width,minimap.height);
 	drawMinimap();
 	minimapContext.beginPath();
@@ -574,14 +575,17 @@ function viridisColorString(value) {
 	var green;
 	var blue;
 
-	var index = Math.round(value*(viridis.length-1));
+	var index = Math.ceil(value*(viridis.length-1));
 
 	try {
 		red = Math.round(viridis[index][0]*255);
 		green = Math.round(viridis[index][1]*255);
 		blue = Math.round(viridis[index][2]*255);
 	}
-	catch(e) {console.log('rogue index is '+index);}
+	catch(e) {
+    // currently do nothing. Was getting a bunch of 0 and -1, should fix that at some point
+    //console.log('rogue index is '+index);
+  }
 
 	return "rgb("+red+","+green+","+blue+")";
 }
