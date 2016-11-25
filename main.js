@@ -691,9 +691,11 @@ function loadData()
 			lines.push(tarr);
 		}
 		data = lines;
+		console.log("Series loaded: "+lines.length);
 		console.log("Min: "+dataMin+", max: "+dataMax);
 
 		// need to force numeric sort
+		console.log("Sorting...")
 		allSortedData = allData.sort(function(a, b){return a-b});
 		allPercentiles = [];
 
@@ -711,6 +713,7 @@ function loadData()
 			isSeriesBrushed[i] = false;
 		}
 
+		console.log('Drawing gatherplot')
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		dataImageStale = true;
 		drawData();
