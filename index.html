@@ -2,10 +2,10 @@
 <html>
   <head>
   	<link rel="stylesheet" type="text/css" href="style.css">
-    <title> Gatherminer v0.6</title>
+    <title> Gatherminer v0.7</title>
   </head>
   <body>
-  	<span style="font-weight:bold;font-size:1.5em;margin-right:1em;">Gatherminer v0.6</span>
+  	<span style="font-weight:bold;font-size:1.5em;margin-right:1em;">Gatherminer v0.7</span>
     <button onmousedown="loadData()">Load data</button>
     <input type="file" id="input">
     <button onmousedown="loadAttributes()">Load attributes</button>
@@ -17,11 +17,13 @@
     <span class="neatBorderBox" id='gatherProgress' style="display:none"></span>
 
     <span class="neatBorderBox">
-      <b>Gather strategy</b>
+      <b>Gathering</b>
       <select id="gatheringStrategySelector">
       <option value="genetic">Genetic</option>
       <option value="greedy" selected="selected">Greedy</option>
+      <option value="greedyImperfectSeed">Greedy imperfect seed</option>
       </select>
+      <input type="checkbox" id="precomputeDistancesCheckbox" checked="false">Precompute distances
     </span>
 
     <span class="neatBorderBox">
@@ -30,11 +32,6 @@
 				<option value="percentile" selected="selected">Percentile</option>
 				<option value="range">Range</option>
 			  </select>
-
-			<!-- Old, no longer used
-			    <label><input type="radio" name="normalisation" value="percentile" checked="true">Percentile</label>
-			    <label><input type="radio" name="normalisation" value="meanrange">Mean+Range</label>
-			-->
 	  </span>
 
     <span class="neatBorderBox">
@@ -45,12 +42,6 @@
     	<option value="rainbow">Rainbow</option>
     	<option value="viridis" selected="selected">Viridis</option>
     </select>
-
-    <!-- Old
-        <label><input type="radio" name="colourmap" value="grayscale">Grayscale</label>
-        <label><input type="radio" name="colourmap" value="redyellowgreen">Red-Yellow-Green</label>
-        <label><input type="radio" name="colourmap" value="rainbow" checked="true">Rainbow</label>
-    -->
     </span>
 
     <hr>
@@ -71,21 +62,12 @@
   				<option value="9">9</option>
   				<option value="10">10</option>
 			  </select>
-
-			<!-- Old set of buttons, no longer used.
-			    <button style="border: none" onmousedown="setDatumSize(1)">1</button>
-			    <button style="border: none" onmousedown="setDatumSize(2)">2</button>
-			    <button style="border: none" onmousedown="setDatumSize(3)">3</button>
-			    <button style="border: none" onmousedown="setDatumSize(4)">4</button>
-			    <button style="border: none" onmousedown="setDatumSize(5)">5</button>
-			-->
 	    </span>
 
 		<span class="neatBorderBox">
 		    <b>Mode</b>
 		    <label><input type="radio" name="mode" value="scan">Scan</label>
 		    <label><input type="radio" name="mode" value="shift">Rotate</label>
-		    <!-- <label><input type="radio" name="mode" value="select">Select</label> -->
 		    <label><input type="radio" name="mode" value="selectBrush" checked="true">Mark interesting</label>
 		    <label><input type="radio" name="mode" value="deselectBrush">Unmark</label>
 	  </span>
@@ -184,34 +166,15 @@
 		</canvas>
 	</div>
 
-	<!--
-	<div id="pointcloud_container"></div>
-	<div id="info"><a href="http://threejs.org" target="_blank">three.js</a> webgl - interactive - raycasting - pointcloud </div>
-	-->
-
     <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-    <!-- <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
     <script src="d3.min.js"></script>
     <script src="dndTree.js"></script>
     <script src="Chart.js"></script>
     <script type="text/javascript" src="underscore-min.js"></script>
-    <!-- <script type='text/javascript'
-	src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["orgchart"]}]}'></script> -->
-    <!-- <script src="gatherer.js"></script> -->
     <script src="id3.js"></script>
     <script src="plotly-latest.min.js"></script>
     <script src="treemap.js"></script>
 
     <script src="main.js"></script>
-
-    <!--
-    <script src="surface3d.js"></script>
-    <script src="surfaceplotter.js"></script>
-    <script src="three.min.js"></script>
-    <script src="Detector.js"></script>
-	<script src="stats.min.js"></script>
-	<script src="pointcloud.js"></script>
-	-->
-    <!--<script src="examples.js"></script>-->
   </body>
 </html>
